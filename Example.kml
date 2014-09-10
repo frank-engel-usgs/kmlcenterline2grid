@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Center Line (Manual).kml</name>
+	<StyleMap id="m_ylw-pushpin1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin2</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin2">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Placemark>
+		<name>Center Line (Manual)</name>
+		<styleUrl>#m_ylw-pushpin1</styleUrl>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				-90.4543969235384,38.81252686944841,0 -90.45267692705966,38.81589308931324,0 -90.45114173652775,38.81861144972979,0 -90.44930402616875,38.82105481166553,0 -90.44729249084311,38.82331282487885,0 -90.44546226631255,38.82487933868912,0 -90.4433330711019,38.82635402419735,0 -90.44108220855125,38.82745980457946,0 -90.43783256605467,38.82856606470222,0 -90.43522919509316,38.82916499395034,0 -90.43232590598355,38.82957819197687,0 -90.42872043398322,38.82962482634346,0 -90.42540749713533,38.82962441767804,0 -90.42144335451394,38.8293930892722,0 -90.41688774423511,38.82883882904655,0 -90.41274757048986,38.8281459583803,0 -90.4090784356908,38.82740760622162,0 -90.40547151171003,38.82653052617598,0 -90.40251147153703,38.82551538851723,0 -90.39896612391888,38.82431577935612,0 -90.39458975721188,38.8230695345137,0 
+			</coordinates>
+		</LineString>
+	</Placemark>
+</Document>
+</kml>
