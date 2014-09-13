@@ -21,10 +21,10 @@ Installation
 1. To run from the source code, you will need Matlab, and the Mapping Toolbox.
 2. Also required is the KML Toolbox, found on the [Matlab FileExcange](http://www.mathworks.com/matlabcentral/fileexchange/34694-kml-toolbox-v2-7 "KML Toolbox")
 3. Clone this repository using git:
--if you have a key associated with your github account
+* if you have a key associated with your github account
 `git clone git@github.com:frank-engel-usgs/kmlcenterline2grid.git`
 
--otherwise
+* otherwise
 `git clone https://github.com/frank-engel-usgs/kmlcenterline2grid.git`
 
 Usage
