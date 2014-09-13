@@ -53,7 +53,7 @@ rB1=reorient(ins1);  % moves the first data point to origin (0,0)
 coefs = [coefs_xt; coefs_yt];
 npolys = 20; ncoefs = 4;
 breaks = breaks_xt;
-%[breaks,coefs,npolys,ncoefs,dim]=unmkpp(cscvn(rB1'));
+% [breaks,coefs,npolys,ncoefs,dim]=unmkpp(cscvn(rB1'));
 
 % initializations
 % in2 = input('Enter the arc-length, delta s: '); % specifies the arc-length (constant)        
@@ -71,9 +71,10 @@ rem_intlngt = 0;            % initial value of the length of the remaining part 
 cintlngt = 0;
 
 % rearrange the coefficient matrix as (ax bx cx dx, ay by cy dy)
-for i=1:npolys
-	coefs_pcs(i,:)=[coefs(2*i-1,:) coefs(2*i,:)];
-end;
+coefs_pcs = [coefs(1:npolys,:) coefs(npolys+1:end,:)];
+% for i=1:npolys
+% 	coefs_pcs(i,:)=[coefs(2*i-1,:) coefs(2*i,:)];
+% end;
 
 % rearrange the break points matrix
 breaks=breaks';
@@ -160,30 +161,32 @@ end % for -counter
     
     Xplot=XY_coord_org(:,1);
     Yplot=XY_coord_org(:,2);
-    subplot(2,1,1), plot(in1(:,1),in1(:,2),'bo'), hold on, % plots the pcs-interpolated and arc-length parameterized smoothed XY coordinates obtained with arc-length interval given in _conf2  
-    subplot(2,1,1), plot(Xplot,Yplot,'.','MarkerSize',5), hold off; % plots the pcs-interpolated and arc-length parameterized smoothed XY coordinates obtained with arc-length interval given in _conf2  
-    subplot(2,1,2), plot(curv,'.','MarkerSize',5); % plots the curvature series of this planform
+%     subplot(2,1,1), plot(in1(:,1),in1(:,2),'bo'), hold on, % plots the pcs-interpolated and arc-length parameterized smoothed XY coordinates obtained with arc-length interval given in _conf2  
+%     subplot(2,1,1), plot(Xplot,Yplot,'.','MarkerSize',5), hold off; % plots the pcs-interpolated and arc-length parameterized smoothed XY coordinates obtained with arc-length interval given in _conf2  
+%     subplot(2,1,2), plot(curv,'.','MarkerSize',5); % plots the curvature series of this planform
     
 out=cikti;
 
 end % function
 
-function [ xt, yt, tt ] = ParametricSpline(x,y)
-%ParametricSpline Summary of this function goes here
-% Detailed explanation goes here
+function [xt,yt,tt] = ParametricSpline(x,y)
+%ParametricSpline Generates ppform parametric splines
+% Uses matlab's built-in spline function to generate parametric cubic
+% splines that are are a f(x,y). This is an alternative to the Curve
+% Fitting Toolbox's cscvn function. 
+% 
+% Taken from: http://www.physicsforums.com/showthread.php?t=468582
+
 arc_length = 0;
 n = length(x);
 t = zeros(n, 1);
-
-
 for i=2:n
     arc_length = sqrt((x(i)-x(i-1))^2 + (y(i)-y(i-1))^2);
     t(i) = t(i-1) + arc_length;
 end
-% t=t./t(length(t));
+t=t./t(length(t));
 xt = spline(t, x);
 yt = spline(t, y);
-
 tt = linspace(0,1,1000);
 end
 
