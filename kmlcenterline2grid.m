@@ -184,11 +184,49 @@ s = s(2:end)-ds;
 [I,J] = ind2sub(size(xn),1:numel(xn));
 [lat_out,lon_out] = utm2deg(xn(:),yn(:),repmat(utmzone(1,:),length(xn(:)),1));
 
-% If required, write the KML and CSV output files
+% If required, write the KML, CSV, and HyPack LNW output files
 if ~isempty(outputfilename)
     % Write the CSV table
     csvoutmat = [xn(:) yn(:)];
     dlmwrite([outputfilename '.csv'],csvoutmat,'precision', '%12.3f')
+    
+    % Write the LNW file
+    % Num of transects equals #rows in xn
+    % Num of longs equal #cols in xn
+    [ntran,nlong] = size(xn);
+    lnw = {['LNS ' num2str(ntran+nlong)]};
+    % Write the transects
+    for i = 1:ntran
+        for j = 1:nlong
+            pts(j,:) = {['PTS ' num2str(xn(i,j),'%12.3f') ' ' num2str(yn(i,j),'%12.3f')]};
+        end
+        temp1 = vertcat(...
+            {['LIN ' num2str(nlong)]},...
+            pts,...
+            {['LNN ' num2str(i)]},...
+            {'EOL'});
+        lnw = [lnw; temp1];
+    end
+    clear pts temp1
+    
+    % Write longitunidals
+    for i = 1:nlong
+        for j = 1:ntran
+            pts(j,:) = {['PTS ' num2str(xn(j,i),'%12.3f') ' ' num2str(yn(j,i),'%12.3f')]};
+        end
+        temp1 = vertcat(...
+            {['LIN ' num2str(ntran)]},...
+            pts,...
+            {['LNN ' num2str(ntran+i)]},...
+            {'EOL'});
+        lnw = [lnw; temp1];
+    end
+    fid = fopen([outputfilename '.lnw'],'w');
+    for i=1:length(lnw)
+        fprintf(fid,'%s',lnw{i,:});
+        fprintf(fid,'\n');
+    end
+    fclose(fid);
     
     % Write a KML, and open in Google Earth
     % The KML will show as a graticule. Also, add markers at the Endpoints

@@ -51,7 +51,7 @@ rB1=reorient(ins1);  % moves the first data point to origin (0,0)
 [breaks_xt,coefs_xt,npolys_xt,ncoefs_xt,dim_xt]=unmkpp(xt);
 [breaks_yt,coefs_yt,npolys_yt,ncoefs_yt,dim_yt]=unmkpp(yt);
 coefs = [coefs_xt; coefs_yt];
-npolys = 20; ncoefs = 4;
+npolys = size(coefs,1)/2; ncoefs = 4;
 breaks = breaks_xt;
 % [breaks,coefs,npolys,ncoefs,dim]=unmkpp(cscvn(rB1'));
 
