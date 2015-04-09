@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deployment-project plugin="plugin.deploytool" plugin-version="1.0">
-  <configuration target="target.standalone.win" target-name="Windows Standalone Application" name="kmlcenterline2grid" location="D:\SVN\kmlcenterline2grid" file="D:\SVN\kmlcenterline2grid\kmlcenterline2grid.prj" build-checksum="2298207245">
+  <configuration target="target.standalone.win" target-name="Windows Standalone Application" name="kmlcenterline2grid" location="D:\SVN\kmlcenterline2grid" file="D:\SVN\kmlcenterline2grid\kmlcenterline2grid.prj" build-checksum="1658200510">
     <param.project.name>D:\SVN\kmlcenterline2grid\kmlcenterline2grid.prj</param.project.name>
     <param.target.type>Windows Standalone Application</param.target.type>
     <param.appname>kmlcenterline2grid</param.appname>
@@ -68,13 +68,9 @@
     <matlab>
       <root>C:\Program Files (x86)\MATLAB\R2012a</root>
       <path>
-        <directory>D:\Documents\MATLAB</directory>
-        <directory>D:\MATLAB\kmltoolbox v2.71\html</directory>
         <directory>D:\MATLAB\kmltoolbox v2.71</directory>
+        <directory>D:\Documents\MATLAB</directory>
         <directory>D:\MATLAB\m2html</directory>
-        <directory>D:\SVN\VMT\utils</directory>
-        <directory>D:\SVN\VMT\doc</directory>
-        <directory>D:\SVN\VMT\tools</directory>
         <directory>${MATLAB_ROOT}\toolbox\matlab\demos</directory>
         <directory>${MATLAB_ROOT}\toolbox\matlab\graph2d</directory>
         <directory>${MATLAB_ROOT}\toolbox\matlab\graph3d</directory>

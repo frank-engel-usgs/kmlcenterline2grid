@@ -31,6 +31,9 @@ function varargout = kmlcenterline2grid(varargin)  %inputfile,ds,dn,beta);
 %       ds:   Streamwise grid node spacing
 %       dn:   Cross-stream grid node spacing
 %       beta: Cross-stream grid half width
+%       curv: Dimensionless intantaneous curvature at that node
+%       S:    s coordinates for all grid nodes
+%       N:    n coordinates for all grid nodes
 %   KML file with the name outputfile containing the computational grid
 %   CSV file (no header) with the coordinates of the the grid in UTM WGS84
 % 
@@ -53,7 +56,7 @@ function varargout = kmlcenterline2grid(varargin)  %inputfile,ds,dn,beta);
 %
 % Original PCS curvature code by: Inci Guneralp (Texas A&M)
 % Grid Production code by: Frank L. Engel, USGS
-% Last modified: 8/28/2013
+% Last modified: 20150409
 
 % Parse the inputs
 if isdeployed
@@ -176,9 +179,12 @@ end
 [S,N] = meshgrid(s,n);
 
 % Screen the first point, which is just a scrap bit of the input centerline
-xn = xn(2:end,:);
-yn = yn(2:end,:);
-s = s(2:end)-ds;
+xn   = xn(2:end,:);
+yn   = yn(2:end,:);
+s    = s(2:end)-ds;
+curv = curv(2:end,:);
+S    = S(:,2:end);
+N    = N(:,2:end);
 
 % Convert resulting grid back into DD (lat/lon)
 [I,J] = ind2sub(size(xn),1:numel(xn));
@@ -249,13 +255,16 @@ end
 
 % Assign outputs
 if nargout>0
-    centerline.s = s;
-    centerline.xn = xn;
-    centerline.yn = yn;
-    centerline.ds = ds;
-    centerline.dn = dn;
+    centerline.s    = s;
+    centerline.xn   = xn;
+    centerline.yn   = yn;
+    centerline.ds   = ds;
+    centerline.dn   = dn;
     centerline.beta = beta;
-    varargout{1} = centerline;
+    centerline.curv = curv;
+    centerline.S    = S;
+    centerline.N    = N;
+    varargout{1}    = centerline;
 %     varargout{2} = N;
 %     varargout{3} = xn;
 %     varargout{4} = yn;
